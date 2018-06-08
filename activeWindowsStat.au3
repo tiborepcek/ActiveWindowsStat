@@ -1,8 +1,8 @@
-﻿#cs
+#cs
 	ActiveWindowsStat 1.0 written in AutoIt 3
 	Description: This program identifies active window every second and get the name of its process. The name is written to a text file $iniFile in INI format in section “processes” like this: name of a process = seconds count. The only way to end this program is to kill its process in task manager. ActiveWindowsStat does not have graphical user interface and needs minimum computer performance.
 	Author: Tibor Repček
-	Web: http://tiborepcek.com/
+	Web: https://github.com/tiborepcek/ActiveWindowsStat/
 #ce
 
 #NoTrayIcon
@@ -12,6 +12,7 @@
 $iniFile = @ScriptDir & "\tracked.ini"
 
 IniWrite($iniFile, "init", "start",  @MDAY & "." & @MON & "." & @YEAR & "," & @HOUR & ":" & @MIN & ":" & @SEC)
+If IniRead($iniFile, "init", "uid", "uid-nf") = "uid-nf" Then IniWrite($iniFile, "init", "uid",  StringReplace(Random(12), ".", ""))
 IniWrite($iniFile, "init", "comp",  @ComputerName)
 IniWrite($iniFile, "init", "user",  @UserName)
 IniWrite($iniFile, "init", "osVer",  @OSVersion)
